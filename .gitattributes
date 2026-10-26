@@ -1,0 +1,5 @@
+# Keep LF line endings on every OS. The build runs make inside a Linux container.
+* text=auto eol=lf
+*.png binary
+*.so binary
+*.azmod binary

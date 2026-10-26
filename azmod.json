@@ -1,0 +1,18 @@
+{
+  "azmod": 1,
+  "id": "record-streaming",
+  "name": "Record Streaming",
+  "version": "0.1.0",
+  "author": "dnlsndr",
+  "summary": "Keeps MASTER REC running while a streaming service plays.",
+  "description": "Removes the streaming-service block from the deck's USB recorder: MASTER REC can start with a streaming track loaded, and loading one does not stop an active recording.\n\nIt hooks the recorder's startable check and its reason notification on EP147 2.00 only (ep147-9e9454e357389ece). The other checks (recording device, Bluetooth input, a track still loading) are left unchanged. No firmware bytes are included; the mod verifies the hooked code's 16-byte fingerprint before claiming it.",
+  "license": "GPL-3.0-only",
+  "source": "https://github.com/dnlsndr/az-mods-record",
+  "api": 1,
+  "firmware": [
+    "ep147-9e9454e357389ece"
+  ],
+  "hooks": true,
+  "min_core": "1.2.3",
+  "category": "audio"
+}
