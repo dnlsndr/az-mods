@@ -1,10 +1,10 @@
 # Release workflow for an AZ-MODS mod.
 #
-# A release is one command:
+# A release is one command for this mod:
 #
 #     git tag record-streaming-<version> && git push origin record-streaming-<version>
 #
-# The tag must be <id>-<version> or v<version>, and the version must match azmod.json.
+# The tag must be record-streaming-<version>, and the version must match azmod.json.
 # The workflow builds the mod in the SDK container, validates it, packages it, attaches
 # the .azmod and its icon to a GitHub release for the tag, and prints the
 # azmods-repo.json entry. If UPDATE_INDEX is "true" and your repository has an
@@ -14,13 +14,13 @@ name: release
 on:
   push:
     # this mod's tags only
-    tags: ["record-streaming-*", "v*"]
+    tags: ["record-streaming-*"]
 
 permissions:
   contents: write          # create the release and (optionally) commit the repository file
 
 env:
-  MOD_DIR: "."             # where azmod.json and the Makefile are, relative to the repo root
+  MOD_DIR: "record-streaming"   # this mod's folder
   SDK_REPO: "Kyle-Hosman/az-mods-sdk"
   SDK_REF: "v1.2.3"        # the SDK version you built and tested with (`azmod-pack --version`)
   UPDATE_INDEX: "true"     # commit the new entry into ./azmods-repo.json if it exists

@@ -1,24 +1,24 @@
 {
   "azmods_repo": 1,
-  "name": "AZ-MODS Record",
+  "name": "AZ-MODS by dnlsndr",
   "maintainer": "dnlsndr",
-  "homepage": "https://github.com/dnlsndr/az-mods-record",
+  "homepage": "https://github.com/dnlsndr/az-mods",
   "mods": [
     {
       "id": "record-streaming",
       "name": "Record Streaming",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "author": "dnlsndr",
       "summary": "Keeps MASTER REC running while a streaming service plays.",
-      "icon": "https://github.com/dnlsndr/az-mods-record/releases/download/record-streaming-0.1.1/record-streaming-0.1.1-icon.png",
-      "package": "https://github.com/dnlsndr/az-mods-record/releases/download/record-streaming-0.1.1/record-streaming-0.1.1.azmod",
-      "sha256": "9dc82a13b788c1cee666d609e9d8aca852e9434ffd9aa1974f537682c0705f9d",
-      "size": 53024,
+      "icon": "https://github.com/dnlsndr/az-mods/releases/download/record-streaming-0.1.2/record-streaming-0.1.2-icon.png",
+      "package": "https://github.com/dnlsndr/az-mods/releases/download/record-streaming-0.1.2/record-streaming-0.1.2.azmod",
+      "sha256": "4175c155f3e066406fb7f508d10e16e8296992fde448bdbd2355ab64eb5e034c",
+      "size": 53017,
       "firmware": [
         "ep147-9e9454e357389ece"
       ],
       "hooks": true,
-      "source": "https://github.com/dnlsndr/az-mods-record",
+      "source": "https://github.com/dnlsndr/az-mods",
       "updated": "2026-10-26",
       "category": "audio",
       "license": "GPL-3.0-only",
