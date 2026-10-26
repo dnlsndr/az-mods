@@ -7,12 +7,12 @@
     {
       "id": "record-streaming",
       "name": "Record Streaming",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": "dnlsndr",
       "summary": "Keeps MASTER REC running while a streaming service plays.",
-      "icon": "https://github.com/dnlsndr/az-mods-record/releases/download/record-streaming-0.1.0/record-streaming-0.1.0-icon.png",
-      "package": "https://github.com/dnlsndr/az-mods-record/releases/download/record-streaming-0.1.0/record-streaming-0.1.0.azmod",
-      "sha256": "c0598e3f8bba69c0e5b130e36c62f3400b7954c68d6e0bc03f65e730901550d4",
+      "icon": "https://github.com/dnlsndr/az-mods-record/releases/download/record-streaming-0.1.1/record-streaming-0.1.1-icon.png",
+      "package": "https://github.com/dnlsndr/az-mods-record/releases/download/record-streaming-0.1.1/record-streaming-0.1.1.azmod",
+      "sha256": "9dc82a13b788c1cee666d609e9d8aca852e9434ffd9aa1974f537682c0705f9d",
       "size": 53024,
       "firmware": [
         "ep147-9e9454e357389ece"

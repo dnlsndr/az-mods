@@ -14,6 +14,18 @@ Add the repository `dnlsndr/az-mods-record` under **Community Mods > Repositorie
 **Browse > Record Streaming > Install**. The deck asks once to allow the build; approve it and
 press **Reload now**.
 
+## Changes
+
+### 0.1.1
+
+- Enables the REC button while a streaming track plays. The 0.1.0 build removed the
+  controller's block but the deck had already greyed the button; 0.1.1 sends the matching
+  startable notification after the override.
+
+### 0.1.0
+
+- First release.
+
 ## Supported build
 
 - EP147 2.00, firmware tag `ep147-9e9454e357389ece`.

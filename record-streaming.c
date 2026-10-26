@@ -71,6 +71,17 @@ static long notify_hook(void *self, long a1, long a2, long a3, long a4) {
     return orig_notify(self, a1, a2, a3, a4);
 }
 
+/* Tell the same listener list that recording is startable again.  The original check has
+ * already sent "not startable, reason 6" through 0xd65990, and the UI greys the REC button
+ * from that notification.  Slot +0x10 is notifyStartableRecording; the value pointer is only
+ * there because the shared notifier reads one word from it. */
+static void notify_startable(void *self) {
+    if (!self || !orig_notify)
+        return;
+    long zero = 0;
+    orig_notify((char *) self + 0x1a8, 0x10, 1, (long) (uintptr_t) &zero, 0);
+}
+
 /* 0xd5cb78(self): 1 = recording may start, 0 = it may not. */
 static int startable_hook(void *self) {
     t_depth++;
@@ -86,8 +97,10 @@ static int startable_hook(void *self) {
             C->log(MOD_ID, "recording refused, reason %d", t_reason);
     }
     if (rc == 0 && t_reason == REASON_STREAMING && mod_on()) {
+        notify_startable(self);
         if (__atomic_exchange_n(&g_logged_override, 1, __ATOMIC_ACQ_REL) == 0 && C)
-            C->log(MOD_ID, "streaming recording allowed (reason %d overridden)", t_reason);
+            C->log(MOD_ID, "streaming recording allowed (reason %d overridden, caller %p)",
+                   t_reason, __builtin_return_address(0));
         return 1;
     }
     return rc;
