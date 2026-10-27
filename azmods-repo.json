@@ -28,13 +28,13 @@
     {
       "id": "spotify-quality",
       "name": "Spotify Highest Quality",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": "dnlsndr",
-      "summary": "Raises Spotify's DJ SDK quality argument to its highest level.",
-      "icon": "https://github.com/dnlsndr/az-mods/releases/download/spotify-quality-0.1.0/spotify-quality-0.1.0-icon.png",
-      "package": "https://github.com/dnlsndr/az-mods/releases/download/spotify-quality-0.1.0/spotify-quality-0.1.0.azmod",
-      "sha256": "862da6ae1671fdc7af07a7c0130ca98c1df3eaa6b8b41a0965b01452677c9adf",
-      "size": 51587,
+      "summary": "Selects the Spotify DJ SDK quality level.",
+      "icon": "https://github.com/dnlsndr/az-mods/releases/download/spotify-quality-0.2.0/spotify-quality-0.2.0-icon.png",
+      "package": "https://github.com/dnlsndr/az-mods/releases/download/spotify-quality-0.2.0/spotify-quality-0.2.0.azmod",
+      "sha256": "6015a49acfebc961110f6417925f76713d9be0b2d2a96c9b91105b555325dae7",
+      "size": 51771,
       "firmware": [
         "ep147-9e9454e357389ece"
       ],
@@ -44,7 +44,7 @@
       "category": "audio",
       "license": "GPL-3.0-only",
       "min_core": "1.2.3",
-      "description": "Hooks the Spotify DJ SDK's DJDownload_add_track and raises the DJAudioQuality argument to 8 when it is lower. 8 is the highest level the deck's Spotify integration exposes (the SDK's own '8 (Highest quality)' entry).\n\nThis is not Spotify Lossless/FLAC. The deck's hardware eSDK exposes Hifi24 only as track metadata; its playback bitrate API has no lossless setting. The mod logs the old and new quality on each track it changes."
+      "description": "Adds a Mod Menu choice row for Spotify quality: Deck default, Fastest (0), Default (5) or Highest (8). Hooks the Spotify DJ SDK's DJDownload_add_track and replaces the DJAudioQuality argument with the selected level; Deck default leaves EP147's value untouched.\n\n8 is the highest level the deck's Spotify integration exposes. This is not Spotify Lossless/FLAC; the hardware eSDK's playback bitrate API has no lossless setting (Hifi24 is track metadata only)."
     }
   ]
 }

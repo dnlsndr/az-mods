@@ -1,13 +1,16 @@
 # Spotify Highest Quality
 
-Raises the Spotify DJ SDK's quality argument to the highest level the deck's
-integration exposes.
+Adds a **Spotify quality** choice row to the Mod Menu: Deck default, Fastest (0),
+Default (5) or Highest (8).
 
 EP147 calls the Spotify DJ SDK's `DJDownload_add_track` with a `DJAudioQuality`
-argument. This mod hooks that function on EP147 2.00 and raises a lower value to
-`8`, the SDK's own "8 (Highest quality)" entry. Values already at 8, or above it,
-are left alone. The original function gets every other argument unchanged, and its
-return value is passed back.
+argument. This mod hooks that function on EP147 2.00 and replaces the argument with
+the selected level. **Deck default** leaves EP147's own value alone. The original
+function gets every other argument unchanged, and its return value is passed back.
+
+The choices are the three levels the SDK names: 0 (Fastest), 5 (Default) and 8
+(Highest). The intermediate values 1-4 and 6-7 are not named by its table and are
+not exposed.
 
 ## Not lossless
 
@@ -31,8 +34,8 @@ Add the repository `dnlsndr/az-mods` under **Community Mods > Repositories**, th
 **Browse > Spotify Highest Quality > Install**. Approve it on the deck and press
 **Reload now**.
 
-The Mod Menu row is **Highest Spotify quality**, on by default. Turn it off to
-leave the SDK call untouched.
+The row is **Spotify quality**, set to **Highest (8)** by default. Choose **Deck
+default** to leave the SDK call untouched.
 
 ## Test
 
@@ -40,9 +43,8 @@ leave the SDK call untouched.
 make test
 ```
 
-The host test checks that the quality is raised only when the row is on and the
-incoming value is below 8, and that an already-high value, the off state and the
-return value pass through unchanged.
+The host test checks that the selected level replaces w2, that Deck default leaves
+the incoming value alone, and that the return value passes through unchanged.
 
 On a deck, play a Spotify track and read the log; it should say
 `DJAudioQuality <old> -> 8`. The audible effect is the SDK's highest lossy stream,
