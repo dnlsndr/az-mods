@@ -16,7 +16,6 @@ once to allow each build; approve it and press **Reload now**.
 | Mod | What it does |
 |---|---|
 | [Record Streaming](record-streaming/) | Keeps MASTER REC running while a track from a streaming service plays. |
-| [Spotify Highest Quality](spotify-quality/) | Raises Spotify's DJ SDK quality argument to its highest lossy level. |
 
 ## Repository layout
 
