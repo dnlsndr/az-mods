@@ -1,16 +1,16 @@
 # Spotify Highest Quality
 
-Adds a **Spotify quality** choice row to the Mod Menu: Deck default, Fastest (0),
-Default (5) or Highest (8).
+Adds a **Spotify quality** choice row to the Mod Menu: **Deck default**, Fastest
+(0) or Default (5).
 
 EP147 calls the Spotify DJ SDK's `DJDownload_add_track` with a `DJAudioQuality`
 argument. This mod hooks that function on EP147 2.00 and replaces the argument with
 the selected level. **Deck default** leaves EP147's own value alone. The original
 function gets every other argument unchanged, and its return value is passed back.
 
-The choices are the three levels the SDK names: 0 (Fastest), 5 (Default) and 8
-(Highest). The intermediate values 1-4 and 6-7 are not named by its table and are
-not exposed.
+The level **8 ("Highest quality") is not offered**: loading a Spotify track with
+it crashed EP147. The intermediate values 1-4 and 6-7 are not named by the
+SDK's table and are not exposed. The safe levels are 0 (Fastest) and 5 (Default).
 
 ## Not lossless
 
@@ -34,8 +34,14 @@ Add the repository `dnlsndr/az-mods` under **Community Mods > Repositories**, th
 **Browse > Spotify Highest Quality > Install**. Approve it on the deck and press
 **Reload now**.
 
-The row is **Spotify quality**, set to **Highest (8)** by default. Choose **Deck
-default** to leave the SDK call untouched.
+The row is **Spotify quality**, set to **Deck default** by default. The first
+`add_track` call logs the deck's own value before any choice is applied:
+
+```text
+first add_track quality 5
+```
+
+Choose **Deck default** to leave the SDK call untouched.
 
 ## Test
 
@@ -46,9 +52,9 @@ make test
 The host test checks that the selected level replaces w2, that Deck default leaves
 the incoming value alone, and that the return value passes through unchanged.
 
-On a deck, play a Spotify track and read the log; it should say
-`DJAudioQuality <old> -> 8`. The audible effect is the SDK's highest lossy stream,
-not FLAC.
+On a deck, play one Spotify track and read the log. The first line is the deck's
+own quality. If you select Fastest or Default, later tracks log
+`DJAudioQuality <old> -> <new>`.
 
 ## License
 

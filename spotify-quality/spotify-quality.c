@@ -16,10 +16,10 @@
  * function entry and replaces a lower value with the level selected in the Mod
  * Menu.  "Deck default" leaves EP147's own value untouched.
  *
- * The choices are 0 (Fastest), 5 (Default) and 8 (Highest).  The intermediate
- * values 1-4 and 6-7 are not named by the SDK's table and are not exposed here.
- * This is still the highest lossy level: the hardware eSDK's playback bitrate
- * API has no lossless setting (its Hifi24 value is track metadata only).
+ * The choices are Deck default, 0 (Fastest) and 5 (Default).  The level 8
+ * ("Highest quality" in the nearby table) crashed EP147 when a Spotify track
+ * was loaded, so it is not offered.  The deck's own value is logged on the
+ * first add_track call before any choice is applied.
  */
 #include <stdint.h>
 #include <string.h>
@@ -33,14 +33,14 @@
 #define SP_FINGERPRINT UINT64_C(0x00e943b25386ba34)
 
 /* The row's choice index -> the DJAudioQuality value.  -1 = leave EP147's value. */
-static const int g_levels[] = {-1, 0, 5, 8};
-static const char *const g_choices[] = {"Deck default", "Fastest (0)", "Default (5)",
-                                        "Highest (8)"};
+static const int g_levels[] = {-1, 0, 5};
+static const char *const g_choices[] = {"Deck default", "Fastest (0)", "Default (5)"};
 
 static const az_core_v1 *C;
 static int (*orig_add_track)(void *dl, const char *uri, int quality, void *cb, void *progress,
                              void *user);
-static int g_quality = 8; /* atomic: the DJAudioQuality to force, -1 for none */
+static int g_quality = -1; /* atomic: the DJAudioQuality to force, -1 for none */
+static int g_logged_first;
 
 static uint64_t code_fingerprint(uintptr_t address) {
     const unsigned char *p = (const unsigned char *) address;
@@ -55,6 +55,8 @@ static uint64_t code_fingerprint(uintptr_t address) {
 static int add_track_hook(void *dl, const char *uri, int quality, void *cb, void *progress,
                           void *user) {
     int before = quality;
+    if (C && __atomic_exchange_n(&g_logged_first, 1, __ATOMIC_ACQ_REL) == 0)
+        C->log(MOD_ID, "first add_track quality %d", before);
     int chosen = __atomic_load_n(&g_quality, __ATOMIC_RELAXED);
     if (chosen >= 0 && quality != chosen)
         quality = chosen;
@@ -93,11 +95,11 @@ static int initialize(const az_core_v1 *api) {
         .kind = AZ_ROW_CHOICE,
         .choices = g_choices,
         .n_choices = (int) (sizeof g_choices / sizeof g_choices[0]),
-        .default_choice = 3, /* Highest (8) */
+        .default_choice = 0, /* Deck default */
         .help = "Sets the Spotify DJ SDK's DJAudioQuality for the next track\n"
-                "it adds. Highest (8) is the highest level the deck exposes.\n"
-                "It is not Spotify Lossless/FLAC; the SDK has no lossless\n"
-                "playback path. Deck default leaves EP147's value alone.",
+                "it adds. Deck default leaves EP147's value alone. Highest (8)\n"
+                "crashed EP147 with a Spotify track, so it is not offered.\n"
+                "The log records the deck's own value on the first call.",
         .on_change = setting_changed,
     };
     int handle = api->register_row(MOD_ID, &row);

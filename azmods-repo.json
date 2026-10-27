@@ -28,13 +28,13 @@
     {
       "id": "spotify-quality",
       "name": "Spotify Highest Quality",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "author": "dnlsndr",
-      "summary": "Selects the Spotify DJ SDK quality level.",
-      "icon": "https://github.com/dnlsndr/az-mods/releases/download/spotify-quality-0.2.0/spotify-quality-0.2.0-icon.png",
-      "package": "https://github.com/dnlsndr/az-mods/releases/download/spotify-quality-0.2.0/spotify-quality-0.2.0.azmod",
-      "sha256": "6015a49acfebc961110f6417925f76713d9be0b2d2a96c9b91105b555325dae7",
-      "size": 51771,
+      "summary": "Selects the Spotify DJ SDK quality level, safely.",
+      "icon": "https://github.com/dnlsndr/az-mods/releases/download/spotify-quality-0.2.1/spotify-quality-0.2.1-icon.png",
+      "package": "https://github.com/dnlsndr/az-mods/releases/download/spotify-quality-0.2.1/spotify-quality-0.2.1.azmod",
+      "sha256": "3eab9fe258a0b163509a6964a4c1f982d664cfbe28a986ef7237690bb6c7f337",
+      "size": 51812,
       "firmware": [
         "ep147-9e9454e357389ece"
       ],
@@ -44,7 +44,7 @@
       "category": "audio",
       "license": "GPL-3.0-only",
       "min_core": "1.2.3",
-      "description": "Adds a Mod Menu choice row for Spotify quality: Deck default, Fastest (0), Default (5) or Highest (8). Hooks the Spotify DJ SDK's DJDownload_add_track and replaces the DJAudioQuality argument with the selected level; Deck default leaves EP147's value untouched.\n\n8 is the highest level the deck's Spotify integration exposes. This is not Spotify Lossless/FLAC; the hardware eSDK's playback bitrate API has no lossless setting (Hifi24 is track metadata only)."
+      "description": "Adds a Mod Menu choice row for Spotify quality: Deck default, Fastest (0) or Default (5). Deck default leaves EP147's value untouched. The DJAudioQuality level 8 (Highest) crashed EP147 when a Spotify track was loaded, so it is not offered. The log prints the deck's own value on the first add_track call.\n\nThis is still the deck's Spotify integration; it is not Spotify Lossless/FLAC. The hardware eSDK's playback bitrate API has no lossless setting."
     }
   ]
 }

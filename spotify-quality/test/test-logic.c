@@ -37,13 +37,12 @@ static int run(int in, int chosen, int rc) {
 int main(void) {
     orig_add_track = fake_add_track;
 
-    assert(run(5, 8, 0) == 8);   /* Highest */
     assert(run(5, 0, 0) == 0);   /* Fastest */
     assert(run(8, 5, 0) == 5);   /* Default overrides a higher deck value */
     assert(run(5, -1, 0) == 5);  /* Deck default: untouched */
-    assert(run(9, 8, 0) == 8);   /* Highest also lowers an above-table value */
-    assert(run(5, 8, -3) == 8);  /* return value preserved */
-    assert(g_levels[0] == -1 && g_levels[1] == 0 && g_levels[2] == 5 && g_levels[3] == 8);
+    assert(run(9, 5, 0) == 5);   /* Default lowers an above-table value */
+    assert(run(5, 0, -3) == 0);  /* return value preserved */
+    assert(g_levels[0] == -1 && g_levels[1] == 0 && g_levels[2] == 5);
     puts("PASS: selected quality replaces w2, Deck default leaves it, rc passes through");
     return 0;
 }
