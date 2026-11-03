@@ -16,6 +16,7 @@ once to allow each build; approve it and press **Reload now**.
 | Mod | What it does |
 |---|---|
 | [Record Streaming](record-streaming/) | Keeps MASTER REC running while a track from a streaming service plays. |
+| [Hide Beat Grid](hide-beatgrid/) | Hides the waveform beat rulers for beatmatching practice. |
 
 ## Repository layout
 

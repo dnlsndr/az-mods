@@ -1,0 +1,16 @@
+{
+  "azmod": 1,
+  "id": "hide-beatgrid",
+  "name": "Hide Beat Grid",
+  "version": "0.1.0",
+  "author": "dnlsndr",
+  "summary": "Hides the waveform beat rulers for beatmatching practice.",
+  "description": "Clears EP147's 1220x15 beat-ruler images above and below the waveforms. The waveform, BPM, cues and audio are unchanged; you can practice matching by ear without using the grid.\n\nThe core owns makeGridImage when Bright Grid/Day Mode is active, so the mod writes settings/azmod-gridaa.off and needs one Reload after installation to claim the hook. Bright Grid and Day Mode cannot be used at the same time.",
+  "license": "GPL-3.0-only",
+  "source": "https://github.com/dnlsndr/az-mods",
+  "api": 1,
+  "firmware": ["ep147-9e9454e357389ece"],
+  "hooks": true,
+  "min_core": "1.2.3",
+  "category": "audio"
+}
